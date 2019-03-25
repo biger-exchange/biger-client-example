@@ -14,4 +14,8 @@ repositories {
 dependencies {
     compile group: "com.biger", name: "biger-client-core", version: bigerClientVersion
     compile group: "com.biger", name: "biger-client-httpops-httpclient", version: bigerClientVersion
+
+    compile group: "com.biger", name: "biger-client-ws-react-httpclient", version: bigerClientVersion
+
+    runtime 'org.slf4j:slf4j-simple:1.7.25'
 }
