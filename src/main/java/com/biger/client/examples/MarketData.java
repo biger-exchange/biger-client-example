@@ -7,9 +7,16 @@ import java.net.URI;
 
 
 public class MarketData {
+//    static {
+//        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
+//    }
     public static void main(String[] args) throws Throwable {
-        try (BigerMarketDataWebsocketClient client = BigerMarketDataWebsocketClient.newBuilder().uri(new URI("wss://biger.in/ws")).build()) {
-            client.start().await();
+
+        try (BigerMarketDataWebsocketClient client =
+                BigerMarketDataWebsocketClient.newBuilder()
+                    .uri(new URI("wss://biger.in/ws"))
+                    .build()
+        ) {
             System.out.println("BTCUSDT quote - " + client.querySymbolPrice("BTCUSDT").block());
             client.subDeals("BTCUSDT")
                     .subscribeOn(Schedulers.single())
