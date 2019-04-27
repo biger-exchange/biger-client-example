@@ -4,6 +4,8 @@ import com.biger.client.ws.react.BigerMarketDataWebsocketClient;
 import reactor.core.scheduler.Schedulers;
 
 import java.net.URI;
+import java.time.Duration;
+import java.time.Instant;
 
 
 public class MarketData {
@@ -18,6 +20,7 @@ public class MarketData {
                     .build()
         ) {
             System.out.println("BTCUSDT quote - " + client.querySymbolPrice("BTCUSDT").block());
+            System.out.println("BTCUSDT kline - " + client.queryKline("BTCUSDT", Instant.now().minus(Duration.ofMinutes(30)), Instant.now(), Duration.ofMinutes(1)).block().toString());
             client.subDeals("BTCUSDT")
                     .subscribeOn(Schedulers.single())
                     .subscribe(System.out::println);
